@@ -1,0 +1,20 @@
+- name: uninstall packages
+  apt:
+    name:
+    #  - apt-transport-https
+    #  - libcap2-bin
+      - loraserver
+      - lora-app-server
+    state: absent
+    purge: yes
+
+- name: remove LoRa Server gpg key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 1CE2AFD36DBCCA00
+    state: absent
+
+- name: remove LoRa Server deb repository
+  apt_repository:
+    repo: deb https://artifacts.loraserver.io/packages/2.x/deb stable main
+    state: absent

@@ -1,0 +1,17 @@
+# See https://www.loraserver.io/lora-app-server/install/config/ for a full
+# configuration example and documentation.
+
+[postgresql]
+dsn="postgres://{{lora_appserver_postgres_user}}:{{lora_appserver_postgres_password}}@{{lora_appserver_postgres_host}}/{{lora_appserver_postgres_db}}?sslmode=disable"
+
+[application_server.integration.mqtt]
+server="{{lora_mqttserver}}"
+username="{{lora_appserver_mqtt_user}}"
+password="{{lora_appserver_mqtt_password}}"
+
+# This is the API and web-interface exposed to the end-user.
+[application_server.external_api]
+# ip:port to bind the (user facing) http server to (web-interface and REST / gRPC api)
+bind="{{lora_appserver_external_socket}}"
+
+jwt_secret=" {{lora_appserver_secret}}"

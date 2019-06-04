@@ -1,0 +1,19 @@
+- name: import LoRa Server gpg key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 1CE2AFD36DBCCA00
+  notify: update apt cache
+
+- name: add LoRa Server deb repository
+  apt_repository:
+    repo: deb https://artifacts.loraserver.io/packages/2.x/deb stable main
+  notify: update apt cache
+
+- name: run handlers now
+  meta: flush_handlers
+
+- name: install packages
+  package:
+    name:
+    - apt-transport-https
+    - libcap2-bin

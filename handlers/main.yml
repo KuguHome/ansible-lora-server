@@ -1,0 +1,13 @@
+- name: update apt cache
+  apt:
+    update_cache: yes
+
+- name: restart lora-app-server
+  service:
+    name: lora-app-server
+    state: restarted
+
+- name: restart loraserver
+  service:
+    name: loraserver
+    state: restarted

@@ -1,0 +1,20 @@
+- name: install loraserver
+  package:
+    name: loraserver
+    state: latest
+
+- name: copy configuration
+  template:
+    src: loraserver.toml.j2
+    dest: /etc/loraserver/loraserver.toml
+    owner: loraserver
+    group: loraserver
+    mode: 0640
+  notify:
+    - restart loraserver
+
+- name: start loraserver on boot
+  service:
+    name: loraserver
+    enabled: yes
+    state: started
