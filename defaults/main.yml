@@ -10,6 +10,8 @@ lora_appserver_public_host: localhost
 lora_appserver_external_socket: 0.0.0.0:8080
 
 lora_mqttserver: "tcp://localhost:1883"
+lora_apt_key_id: "1CE2AFD36DBCCA00"
+lora_apt_repository: "deb https://artifacts.loraserver.io/packages/3.x/deb stable main"
 
 lora_appserver_secret: "{{ lookup('password', 'credentials/lora-server/lora_appserver_secret'+' chars=ascii_letters,digits length=44') }}="
 lora_appserver_postgres_user: loraserver_as
