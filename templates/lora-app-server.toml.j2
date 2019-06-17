@@ -1,6 +1,10 @@
 # See https://www.loraserver.io/lora-app-server/install/config/ for a full
 # configuration example and documentation.
 
+[general]
+# debug=5, info=4, warning=3, error=2, fatal=1, panic=0
+log_level=4
+
 [postgresql]
 dsn="postgres://{{lora_appserver_postgres_user}}:{{lora_appserver_postgres_password}}@{{lora_appserver_postgres_host}}/{{lora_appserver_postgres_db}}?sslmode=disable"
 
