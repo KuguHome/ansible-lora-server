@@ -34,6 +34,10 @@ lora_networkserver_band: EU_863_870
 lora_networkserver_mqtt_user: loraserver_ns
 lora_networkserver_mqtt_password: "{{ lookup('password', 'credentials/lora-server/lora_networkserver_mqtt_password'+' chars=ascii_letters,digits length=44') }}="
 
+lora_downlink_template: !unsafe "gateway/{{ .MAC }}/command/down"
+lora_config_template: !unsafe "gateway/{{ .MAC }}/command/config"
+lora_command_template: !unsafe "gateway/{{ .GatewayID }}/command/{{ .CommandType }}"
+
 lora_databases:
   - db: "{{ lora_appserver_postgres_db }}"
     user: "{{ lora_appserver_postgres_user }}"
