@@ -1,12 +1,12 @@
 - name: import LoRa Server gpg key
   apt_key:
     keyserver: keyserver.ubuntu.com
-    id: {{ lora_apt_key_id }}
+    id: "{{ lora_apt_key_id }}"
   notify: update apt cache
 
 - name: add LoRa Server deb repository
   apt_repository:
-    repo: {{ lora_apt_repository }}
+    repo: "{{ lora_apt_repository }}"
     state: present
   notify: update apt cache
 
