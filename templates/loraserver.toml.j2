@@ -40,10 +40,50 @@ frequency=867900000
 min_dr=0
 max_dr=5
 
-[integration.mqtt.auth.generic]
+[network_server.gateway.backend]
+type="mqtt"
+
+# MQTT gateway backend settings.
+#
+# This is the backend communicating with the LoRa gateways over a MQTT broker.
+[network_server.gateway.backend.mqtt]
+# Event topic template.
+event_topic="gateway/+/event/+"
+
+command_topic_template="{{ lora_command_template }}"
+
+# MQTT server (e.g. scheme://host:port where scheme is tcp, ssl or ws)
 server="{{lora_mqttserver}}"
+
+# Connect with the given username (optional)
 username="{{lora_networkserver_mqtt_user}}"
+
+# Connect with the given password (optional)
 password="{{lora_networkserver_mqtt_password}}"
+
+# Quality of service level
+#
+# 0: at most once
+# 1: at least once
+# 2: exactly once
+#
+# Note: an increase of this value will decrease the performance.
+# For more information: https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels
+qos=0
+
+# Clean session
+#
+# Set the "clean session" flag in the connect message when this client
+# connects to an MQTT broker. By setting this flag you are indicating
+# that no messages saved by the broker for this client should be delivered.
+clean_session=true
+
+# Client ID
+#
+# Set the client id to be used by this client when connecting to the MQTT
+# broker. A client id must be no longer than 23 characters. When left blank,
+# a random id will be generated. This requires clean_session=true.
+client_id=""
 
 
 #[geolocation_server]
