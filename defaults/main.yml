@@ -9,7 +9,7 @@ lora_postgresql_use: yes
 lora_appserver_public_host: localhost
 lora_appserver_external_socket: 0.0.0.0:8080
 
-lora_mqttserver: "tcp://localhost:1883"
+lora_mqttserver: "tcp://192.168.1.60:1883"
 lora_apt_key_id: "1CE2AFD36DBCCA00"
 lora_apt_repository: "deb https://artifacts.loraserver.io/packages/3.x/deb stable main"
 
@@ -37,6 +37,15 @@ lora_networkserver_mqtt_password: "{{ lookup('password', 'credentials/lora-serve
 lora_downlink_template: !unsafe "gateway/{{ .MAC }}/command/down"
 lora_config_template: !unsafe "gateway/{{ .MAC }}/command/config"
 lora_command_template: !unsafe "gateway/{{ .GatewayID }}/command/{{ .CommandType }}"
+lora_event_template: !unsafe "gateway/+/event/+"
+
+lora_app_uplink_tmpl: !unsafe "application/{{ .ApplicationID }}/device/{{ .DevEUI }}/rx"
+lora_app_downlink_tmpl: !unsafe "application/{{ .ApplicationID }}/device/{{ .DevEUI }}/tx"
+lora_app_join_tmpl: !unsafe "application/{{ .ApplicationID }}/device/{{ .DevEUI }}/join"
+lora_app_ack_tmpl: !unsafe "application/{{ .ApplicationID }}/device/{{ .DevEUI }}/ack"
+lora_app_error_tmpl: !unsafe "application/{{ .ApplicationID }}/device/{{ .DevEUI }}/error"
+lora_app_status_tmpl: !unsafe "application/{{ .ApplicationID }}/device/{{ .DevEUI }}/status"
+lora_app_location_tmpl: !unsafe "application/{{ .ApplicationID }}/device/{{ .DevEUI }}/location"
 
 lora_databases:
   - db: "{{ lora_appserver_postgres_db }}"

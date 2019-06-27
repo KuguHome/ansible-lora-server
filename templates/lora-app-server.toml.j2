@@ -12,6 +12,22 @@ dsn="postgres://{{lora_appserver_postgres_user}}:{{lora_appserver_postgres_passw
 server="{{lora_mqttserver}}"
 username="{{lora_appserver_mqtt_user}}"
 password="{{lora_appserver_mqtt_password}}"
+client_id="lora_appsrv"
+
+uplink_topic_template="{{ lora_app_uplink_tmpl }}"
+downlink_topic_template="{{ lora_app_downlink_tmpl }}"
+join_topic_template="{{ lora_app_join_tmpl }}"
+ack_topic_template="{{ lora_app_ack_tmpl }}"
+error_topic_template="{{ lora_app_error_tmpl }}"
+status_topic_template="{{ lora_app_status_tmpl }}"
+location_topic_template="{{ lora_app_location_tmpl }}"
+
+uplink_retained_message=false
+join_retained_message=false
+ack_retained_message=false
+error_retained_message=false
+status_retained_message=false
+location_retained_message=false
 
 # This is the API and web-interface exposed to the end-user.
 [application_server.external_api]
