@@ -13,18 +13,18 @@ lora_mqttserver: "tcp://192.168.1.60:1883"
 lora_apt_key_id: "1CE2AFD36DBCCA00"
 lora_apt_repository: "deb https://artifacts.loraserver.io/packages/3.x/deb stable main"
 
-lora_appserver_secret: "{{ lookup('password', 'credentials/lora-server/lora_appserver_secret'+' chars=ascii_letters,digits length=44') }}="
+lora_appserver_secret: "{{ secrets.lora.appserver.secret }}"
 lora_appserver_postgres_user: loraserver_as
-lora_appserver_postgres_password: "{{ lookup('password', 'credentials/lora-server/lora_appserver_postgres_password'+' chars=ascii_letters,digits length=44') }}="
+lora_appserver_postgres_password: "{{ secrets.lora.appserver.psql }}"
 lora_appserver_postgres_host: localhost
 lora_appserver_postgres_db: loraserver_as
 
 lora_appserver_mqtt_user: loraserver_as
-lora_appserver_mqtt_password: "{{ lookup('password', 'credentials/lora-server/lora_appserver_mqtt_password'+' chars=ascii_letters,digits length=44') }}="
+lora_appserver_mqtt_password: "{{ secrets.lora.appserver.mqtt }}"
 
 
 lora_networkserver_postgres_user: loraserver_ns
-lora_networkserver_postgres_password: "{{ lookup('password', 'credentials/lora-server/lora_networkserver_postgres_password'+' chars=ascii_letters,digits length=44') }}="
+lora_networkserver_postgres_password: "{{ secrets.lora.netserver.psql }}"
 lora_networkserver_postgres_host: localhost
 lora_networkserver_postgres_db: loraserver_ns
 
@@ -32,7 +32,7 @@ lora_networkserver_net_id: "000000"
 lora_networkserver_band: EU_863_870
 
 lora_networkserver_mqtt_user: loraserver_ns
-lora_networkserver_mqtt_password: "{{ lookup('password', 'credentials/lora-server/lora_networkserver_mqtt_password'+' chars=ascii_letters,digits length=44') }}="
+lora_networkserver_mqtt_password: "{{ secrets.lora.netserver.mqtt }}"
 
 lora_downlink_template: !unsafe "gateway/{{ .MAC }}/command/down"
 lora_config_template: !unsafe "gateway/{{ .MAC }}/command/config"
