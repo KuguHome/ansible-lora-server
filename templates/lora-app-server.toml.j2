@@ -35,3 +35,12 @@ location_retained_message=false
 bind="{{lora_appserver_external_socket}}"
 
 jwt_secret=" {{lora_appserver_secret}}"
+
+[metrics.prometheus]
+endpoint_enabled={{ lora_appserver_metrics_enabled | lower }}
+{% if lora_appserver_metrics_enabled %}
+bind="{{ lora_appserver_metrics_endpoint }}"
+{% else %}
+bind=""
+{% endif %}
+api_timing_histogram=false

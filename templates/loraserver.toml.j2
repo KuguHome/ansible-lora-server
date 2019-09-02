@@ -86,6 +86,27 @@ clean_session=true
 # a random id will be generated. This requires clean_session=true.
 client_id="lora_srv"
 
-
 #[geolocation_server]
 #server="localhost:8005"
+
+# Metrics collection settings.
+[metrics]
+# Timezone
+#
+# The timezone is used for correctly aggregating the metrics (e.g. per hour,
+# day or month).
+# Example: "Europe/Amsterdam" or "Local" for the the system's local time zone.
+timezone="Local"
+
+[metrics.prometheus]
+# Enable Prometheus metrics endpoint.
+endpoint_enabled={{ lora_networkserver_metrics_enabled | lower }}
+api_timing_histogram=false
+
+# The ip:port to bind the Prometheus metrics server to for serving the
+# metrics endpoint.
+{% if lora_networkserver_metrics_enabled %}
+bind="{{ lora_networkserver_metrics_endpoint }}"
+{% else %}
+bind=""
+{% endif %}
