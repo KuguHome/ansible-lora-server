@@ -18,3 +18,9 @@
     db: "{{ item.db }}"
     name: pg_trgm
   become_user: postgres
+
+- name: create hstore extension
+  postgresql_ext:
+    db: "{{ item.db }}"
+    name: hstore
+  become_user: postgres

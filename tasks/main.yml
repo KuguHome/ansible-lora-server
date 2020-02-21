@@ -1,12 +1,14 @@
 - include: base.yml
   when: not lora_uninstall
 - include: redis.yml
+  tags: redis
   when: lora_redis_use
 - include: networkserver.yml
   when: lora_networkserver_use
 - include: appserver.yml
   when: lora_appserver_use
 - name: create databases
+  tags: postgres
   include_tasks: postgres.yml
   with_items: "{{ lora_databases }}"
   when: lora_postgresql_use

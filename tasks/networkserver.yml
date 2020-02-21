@@ -6,12 +6,12 @@
 - name: copy configuration
   template:
     src: loraserver.toml.j2
-    dest: /etc/loraserver/loraserver.toml
-    owner: loraserver
-    group: loraserver
+    dest: "{{ lora_networkserver_configlocation }}{{ lora_networkserver_name }}.toml"
+    owner: "{{ lora_networkserver_user }}"
+    group: "{{ lora_networkserver_user }}"
     mode: 0640
   notify:
-    - restart loraserver
+  - restart loraserver
 
 - name: start loraserver on boot
   service:
